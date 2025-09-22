@@ -10,11 +10,11 @@ But, is completley written from scratch. No JVM, no nothing.
 # Gluon/Glue
 Gluon/Glue is the package system of Quark. It bundles source files and metadata into a glorified ZIP file. One can be created with
 ```shell
-$ quaoar glue
+$ quark glue
 ```
 And you can run one with
 ```shell
-$ quaoar superglue [package].gluon
+$ quark superglue [package].gluon
 ```
 As well as being standalone executables (like `.jar`s), they can also be used as libraries/packages in other programs.
 
