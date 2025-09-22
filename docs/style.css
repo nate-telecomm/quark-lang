@@ -1,0 +1,10 @@
+@import "https://www.nerdfonts.com/assets/css/webfont.css";
+
+body {
+  background-color: black;
+  color: white;
+}
+
+p {
+  font-size: large;
+}
