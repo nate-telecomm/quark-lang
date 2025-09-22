@@ -58,9 +58,14 @@ func main() {
 		Init()
 		switch osArgs[0] {
 		case "glue":
-			err = BuildGluon(".")
-			if err != nil {
-				GluonError(err.Error())
+			if len(osArgs) != 2 {
+				RuntimeError("glue takes one argument!")
+			}
+			if osArgs[1] == "this" {
+				err = BuildGluon(".")
+				if err != nil {
+					GluonError(err.Error())
+				}
 			}
 		}
 	}
