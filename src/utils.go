@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"math/big"
+	"path/filepath"
 )
 
 func RandStr(length int) (string, error) {
@@ -41,5 +42,24 @@ func copyFile(src, dst string) error {
 		return fmt.Errorf("failed to sync destination file to disk: %w", err)
 	}
 
+	return nil
+}
+
+func copyDir(source, target string) error {
+	if _, err := os.Stat(source); err == nil {
+		err := os.Mkdir(target, 0755)
+		if err != nil { return err }
+		entries, err := os.ReadDir(source)
+		if err != nil { return err }
+		for _, file := range entries {
+			fname := file.Name()
+			src := filepath.Join(source, fname)
+			dst := filepath.Join(target, fname)
+			err = copyFile(src, dst)
+			if err != nil { return err }
+		}
+	} else {
+		return fmt.Errorf("no such directory " + source)
+	}
 	return nil
 }
