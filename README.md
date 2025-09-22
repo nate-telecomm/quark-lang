@@ -2,6 +2,7 @@
 ## A Java-like language
 > [!warning]
 > This is still in HEAVY development, some stuff don't work yet
+
 Quark is a specific-purpose programming language that takes a lot of stuff from Java, like
 - WORA
 - Neat packaging (like `.jar`)
