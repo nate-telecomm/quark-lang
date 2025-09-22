@@ -5,12 +5,14 @@ import (
 	"strings"
 	"path/filepath"
 	"quark/vm"
+	"slices"
 	"encoding/json"
 	"github.com/nate-telecomm/go_ansi"
 )
 
 func BuildGluon(projectDir string) error {
 	finished := ""
+	processed := []string{}
 	pkgsDir := filepath.Join(projectDir, "pkgs")
 	if _, err := os.Stat(pkgsDir); err == nil {
 		err := filepath.Walk(pkgsDir, func(path string, info os.FileInfo, err error) error {
@@ -23,13 +25,14 @@ func BuildGluon(projectDir string) error {
 					if ferr != nil {
 						return ferr
 					}
-					if !finfo.IsDir() && strings.HasSuffix(finfo.Name(), ".quark") {
-						codeBytes, err := os.ReadFile(fpath)
-						if err != nil {
-							return err
-						}
-						bc := vm.ToBytecode(string(codeBytes))
-						finished += bc + "\n"
+					if !finfo.IsDir() && finfo.Name() == "source.glue" {
+							codeBytes, err := os.ReadFile(fpath)
+							if err != nil {
+									return err
+							}
+							if slices.Contains(processed, Checksum(codeBytes)) { return nil }
+							finished += string(codeBytes) + "\n"
+							processed = append(processed, Checksum(codeBytes))
 					}
 					return nil
 				})
@@ -55,8 +58,10 @@ func BuildGluon(projectDir string) error {
 			if err != nil {
 				return err
 			}
+			if slices.Contains(processed, Checksum(codeBytes)) { return nil }
 			bc := vm.ToBytecode(string(codeBytes))
 			finished += bc + "\n"
+			processed = append(processed, Checksum(codeBytes))
 		}
 		return nil
 	})

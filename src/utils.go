@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"io"
 	"math/big"
+	"crypto/sha256"
+	"encoding/base64"
 	"path/filepath"
 )
 
@@ -62,4 +64,10 @@ func copyDir(source, target string) error {
 		return fmt.Errorf("no such directory " + source)
 	}
 	return nil
+}
+
+func Checksum(data []byte) string {
+	sha := sha256.Sum256(data)
+	encoded := base64.StdEncoding.EncodeToString(sha[:])
+	return encoded
 }
