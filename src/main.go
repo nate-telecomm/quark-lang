@@ -1,6 +1,7 @@
 package main
 
 import (
+	"strings"
 	"os"
 	"github.com/nate-telecomm/go_ansi"
 	"encoding/json"
@@ -48,6 +49,9 @@ func main() {
 	} else if osArgs[0] == "superglue" {
 		if len(osArgs) != 2 {
 			GluonError("No Gluon provided!")
+		}
+		if !strings.HasSuffix(osArgs[1], ".gluon") {
+			GluonWarning("This file does not have the .gluon extension, it might not be a Gluon")
 		}
 		Run(osArgs[1])
 	} else {

@@ -22,29 +22,35 @@ func Exit(status int) {
 func RuntimeError(msg string) {
 	fmt.Println(ansi.Red + "------[RuntimeError]------" + ansi.End)
 	fmt.Println(msg)
+	fmt.Println(ansi.Red + "--------------------------" + ansi.End)
 	Exit(1)
 }
 func RuntimeWarning(msg string) {
 	fmt.Println(ansi.Yellow + "------[RuntimeWarning]------" + ansi.End)
 	fmt.Println(msg)
+	fmt.Println(ansi.Yellow + "--------------------------" + ansi.End)
 }
 func GluonError(msg string) {
 	fmt.Println(ansi.Red + "------[GluonError]------" + ansi.End)
 	fmt.Println(msg)
+	fmt.Println(ansi.Red + "--------------------------" + ansi.End)
 	Exit(1)
 }
 func GluonWarning(msg string) {
 	fmt.Println(ansi.Yellow + "------[GluonWarning]------" + ansi.End)
 	fmt.Println(msg)
+	fmt.Println(ansi.Yellow + "--------------------------" + ansi.End)
 }
 func PackageError(msg string) {
 	fmt.Println(ansi.Red + "------[PackageError]------" + ansi.End)
 	fmt.Println(msg)
+	fmt.Println(ansi.Red + "--------------------------" + ansi.End)
 	Exit(1)
 }
 func PackageWarning(msg string) {
 	fmt.Println(ansi.Yellow + "------[PackageWarning]------" + ansi.End)
 	fmt.Println(msg)
+	fmt.Println(ansi.Yellow + "--------------------------" + ansi.End)
 }
 
 func CheckError(e error) {

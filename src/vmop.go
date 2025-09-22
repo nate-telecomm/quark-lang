@@ -76,10 +76,10 @@ func Run(gluon string) {
 	unzipSource(gluon)
 	os.Remove(gluon)
 
-	var p Project
+	var p Package
 	data, _ := os.ReadFile("quark-proj.json")
 	json.Unmarshal(data, &p)
-	CoreProject = &p
-	niceName = ansi.Underline + CoreProject.Name + ansi.End
+	CorePackage = &p
+	niceName = ansi.Underline + CorePackage.Name + ansi.End
 	Log("Running " + niceName)
 }
