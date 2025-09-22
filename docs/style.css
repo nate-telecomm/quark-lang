@@ -19,3 +19,10 @@ code {
   font-family: monospace;
   color: #00ff00;
 }
+
+img {
+  width: 200px;
+  height: 300px;
+  object-fit: contain;
+  border:1px solid black;
+}
