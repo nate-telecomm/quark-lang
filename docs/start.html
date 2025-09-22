@@ -10,5 +10,21 @@
     <center>
       <h1>Getting started</h1>
     </center>
+    <h1>Installation</h1>
+    <p>To install Quark, you must clone and compile the source.</p>
+    <pre><code>
+git clone https://github.com/nate-telecomm/quark-lang
+cd quark-lang/src/
+go build
+cd -
+sudo mv quark-lang/src/quark /usr/bin/
+rm -rf quark-lang/
+    </code></pre>
+    <p>I know most times you compile some big project, you get like 50 million errors and you have to configure a bunch of stuff. But, this is written in Go, therefore compilation should be quick and easy.</p>
+    <h1>Everyone starts somewhere??</h1>
+    <p>Create a new project directory like <code>helloworld</code> and run <code>quark new HelloWorld</code>, you should then see</p>
+    <pre><code>
+<i>[LOG]</i> Created new project <u>HelloWorld</u>
+    </code></pre>
   </body>
 </html>
