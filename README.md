@@ -1,4 +1,5 @@
 # Quark
+![Logo](media/banner.png)
 ## A Java-like language
 Quark is a specific-purpose programming language that takes a lot of stuff from Java, like
 - WORA
