@@ -10,6 +10,7 @@
     <center>
       <h1>Getting started</h1>
     </center>
+    <p>Note: This tutorial assumes you have a decent amount of programming knowledge.</p>
     <h1>Installation</h1>
     <p>To install Quark, you must clone and compile the source.</p>
     <pre><code>
@@ -42,10 +43,7 @@ Hello, World!
 <i>[LOG]</i> Cleaning up...
     </code></pre>
     <p>If so, then, congrats! You wrote your first Quark program!</p>
-    <br>
-    <br>
     <p>Well... what happened?</p>
-    <br>
     <p>Firstly, Quark goes through all <code>.quark</code> files and converts their source into bytecode for the Quark VM. Once thats done, all the bytecode is combined into a single source file. Then, a 'mount' is created, where the new source file (<code>source.glue</code>) and <code>quark-proj.json</code> is placed. It is then compressed, and outputs a Gluon.
     <h1>What is Glue and what is a Gluon??</h1>
     <p>A Gluon is a self-contained Quark program. It contains the bytecode and metadata of the program.</p>
