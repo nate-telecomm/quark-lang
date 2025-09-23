@@ -2,9 +2,13 @@ package main
 
 import (
 	"strings"
+	"path/filepath"
+	"fmt"
 	"os"
 	"github.com/nate-telecomm/go_ansi"
 	"encoding/json"
+	"quark/vm"
+	"reflect"
 )
 
 func Init() {
@@ -53,7 +57,15 @@ func main() {
 		if !strings.HasSuffix(osArgs[1], ".gluon") {
 			GluonWarning("This file does not have the .gluon extension, it might not be a Gluon")
 		}
-		Run(osArgs[1])
+		LoadGluon(osArgs[1])
+		weREALLYneedtocleanup = true
+		data, err := os.ReadFile(filepath.Join("quark--gluon--mount", "source.glue"))
+		CheckError(err)
+		blob, _ := vm.CompileSourceToBlob(`print("Hello, World!");`)
+		fmt.Println(reflect.DeepEqual(data, blob))
+		if err = vm.RunBytecode(data); err != nil {
+      RuntimeError(err.Error())
+    }
 	} else {
 		Init()
 		switch osArgs[0] {

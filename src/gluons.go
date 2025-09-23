@@ -5,18 +5,19 @@ import (
 	"path/filepath"
 )
 
-func MakeGluon(bytecode string) error {
+func MakeGluon(bytecode []byte) error {
 	os.Mkdir("tempgluon", 0755)
 	copyFile("quark-proj.json", filepath.Join("tempgluon", "quark-proj.json"))
 	err := os.Chdir("tempgluon")
 	CheckError(err)
-	os.WriteFile("source.glue", []byte(bytecode), 0644)
-	err = zipSource(".", CorePackage.Name + ".gluon")
+	err = os.WriteFile("source.glue", bytecode, 0644)
+	CheckError(err)
+	err = zipSource(".", "main.gluon")
 	CheckError(err)
 
 	err = os.Chdir(workingDir)
 	CheckError(err)
-	err = copyFile(filepath.Join("tempgluon", CorePackage.Name + ".gluon"), CorePackage.Name + ".gluon")
+	err = copyFile(filepath.Join("tempgluon", "main.gluon"), CorePackage.Name + ".gluon")
 	CheckError(err)
 	os.RemoveAll("tempgluon")
 	Log("Glued " + niceName + " => " + CorePackage.Name + ".gluon")
