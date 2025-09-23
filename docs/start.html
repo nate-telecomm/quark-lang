@@ -21,10 +21,40 @@ sudo mv quark-lang/src/quark /usr/bin/
 rm -rf quark-lang/
     </code></pre>
     <p>I know most times you compile some big project, you get like 50 million errors and you have to configure a bunch of stuff. But, this is written in Go, therefore compilation should be quick and easy.</p>
-    <h1>Everyone starts somewhere??</h1>
+    <center>
+      <h1>1. Everyone starts somewhere??</h1>
+    </center>
+    <h1>Hello, World!</h1>
     <p>Create a new project directory like <code>helloworld</code> and run <code>quark new HelloWorld</code>, you should then see</p>
     <pre><code>
 <i>[LOG]</i> Created new project <u>HelloWorld</u>
     </code></pre>
+    <p>Go ahead and create a file, but make sure it ends with <code>.quark</code> and add the following</p>
+    <pre><code>
+print("Hello, World!");
+    </code></pre>
+    <p>Then, run <code>quark glue this</code>, and it should output <code>HelloWorld.gluon</code>.</p>
+    <br>
+    <p>To run it, do <code>quark superglue HelloWorld.gluon</code>, to which you should get </p>
+    <pre><code>
+<i>[LOG]</i> Created Gluon mount
+Hello, World!
+<i>[LOG]</i> Cleaning up...
+    </code></pre>
+    <p>If so, then, congrats! You wrote your first Quark program!</p>
+    <br>
+    <br>
+    <p>Well... what happened?</p>
+    <br>
+    <p>Firstly, Quark goes through all <code>.quark</code> files and converts their source into bytecode for the Quark VM. Once thats done, all the bytecode is combined into a single source file. Then, a 'mount' is created, where the new source file (<code>source.glue</code>) and <code>quark-proj.json</code> is placed. It is then compressed, and outputs a Gluon.
+    <h1>What is Glue and what is a Gluon??</h1>
+    <p>A Gluon is a self-contained Quark program. It contains the bytecode and metadata of the program.</p>
+    <br>
+    <p>Glue is the package manager for Quark. It is in charge of</p>
+    <ul>
+      <li>Converting programs to Gluons</li>
+      <li>Managing Gluon dependencies</li>
+      <li>Getting Gluons from the internet</li>
+    </ul>
   </body>
 </html>
