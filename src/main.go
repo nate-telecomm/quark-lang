@@ -3,12 +3,10 @@ package main
 import (
 	"strings"
 	"path/filepath"
-	"fmt"
 	"os"
 	"github.com/nate-telecomm/go_ansi"
 	"encoding/json"
 	"quark/vm"
-	"reflect"
 )
 
 func Init() {
@@ -61,8 +59,6 @@ func main() {
 		weREALLYneedtocleanup = true
 		data, err := os.ReadFile(filepath.Join("quark--gluon--mount", "source.glue"))
 		CheckError(err)
-		blob, _ := vm.CompileSourceToBlob(`print("Hello, World!");`)
-		fmt.Println(reflect.DeepEqual(data, blob))
 		if err = vm.RunBytecode(data); err != nil {
       RuntimeError(err.Error())
     }
