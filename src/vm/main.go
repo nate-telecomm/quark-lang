@@ -12,10 +12,9 @@ import (
 )
 
 /* ---------- Opcodes ---------- */
-type Op byte
 
 const (
-	OpHalt Op = iota
+	OpHalt byte = iota
 	OpLoadConst      // operand: u16 const index
 	OpStoreLocal     // operand: u16 local index
 	OpLoadLocal      // operand: u16 local index
@@ -459,7 +458,6 @@ func (c *Compiler) compileProgram(stmts []Stmt) ([]byte, []interface{}, error) {
 			return nil, nil, err
 		}
 	}
-	c.emit(byte(OpHalt))
 	return c.code, c.consts, nil
 }
 
@@ -532,7 +530,7 @@ func RunBytecode(blob []byte) error {
 		if ip >= len(code) {
 			return errors.New("ip out of range")
 		}
-		op := Op(code[ip])
+		op := byte(code[ip])
 		ip++
 		switch op {
 		case OpHalt:
